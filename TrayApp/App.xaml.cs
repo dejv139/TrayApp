@@ -94,4 +94,5 @@ namespace TrayApp
                     0);
             }
         }
+    }
 }
