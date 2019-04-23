@@ -21,12 +21,15 @@ namespace TrayApp
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+            slajdr.Value = MouseOptions.GetMouseSpeed();
+            
         }
 
-        public const UInt32 SPI_GETMOUSESPEED = 0x0070;
+        public const UInt32 SPI_SETMOUSESPEED = 10;
 
 
 
@@ -43,6 +46,7 @@ namespace TrayApp
         {
             int speed = (int)slajdr.Value;
             MouseOptions.SetMouseSpeed(speed);
+            test2.Content = MouseOptions.GetMouseSpeed();
         }
     }
 }
