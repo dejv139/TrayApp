@@ -74,9 +74,5 @@ namespace TrayApp
             }
         }
 
-        class Program
-        {
-
-        }
     }
 }

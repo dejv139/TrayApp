@@ -21,17 +21,21 @@ namespace TrayApp
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        MouseOptions m = new MouseOptions();
         public MainWindow()
         {
             InitializeComponent();
-            slajdr.Value = MouseOptions.GetMouseSpeed();
-            
+            int speed = m.GetMouseSpeed();
+            slajdr.Value = speed;
+            Left = System.Windows.SystemParameters.WorkArea.Width - Width;
+            Top = System.Windows.SystemParameters.WorkArea.Height - Height;
+
         }
 
-        public const UInt32 SPI_SETMOUSESPEED = 10;
+        public const UInt32 SPI_SETMOUSESPEED = 105;
 
 
+        
 
         const UInt32 SPIF_SENDWININICHANGE = 0x02;
 
@@ -45,8 +49,15 @@ namespace TrayApp
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             int speed = (int)slajdr.Value;
-            MouseOptions.SetMouseSpeed(speed);
-            test2.Content = MouseOptions.GetMouseSpeed();
+            m.SetMouseSpeed(speed);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int speed = 10;
+            m.SetMouseSpeed(speed);
+            slajdr.Value = 10;
+
         }
     }
 }

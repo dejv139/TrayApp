@@ -19,15 +19,15 @@ namespace TrayApp
         public const int SPI_SETMOUSESPEED = 113;
 
 
-        private static int intDefaulSpeed = 10;
-        private static int intCurrentSpeed;
-        private static int intNewSpeed;
+        public int intDefaulSpeed = 10;
+        public int intCurrentSpeed;
+        private int intNewSpeed;
 
-        public static void GetDefaults()
+        public void GetDefaults()
         {
             intCurrentSpeed = GetMouseSpeed();
         }
-        public static void SetDefaults()
+        public void SetDefaults()
         {
             if (intCurrentSpeed == 20)
             {
@@ -39,7 +39,7 @@ namespace TrayApp
             }
         }
 
-        public static int GetMouseSpeed()
+        public int GetMouseSpeed()
         {
             int intSpeed = 0;
             IntPtr ptr;
@@ -51,20 +51,12 @@ namespace TrayApp
             return intSpeed;
         }
 
-        public static void SetMouseSpeed(int intSpeed)
+        public void SetMouseSpeed(int intSpeed)
         {
             IntPtr ptr = new IntPtr(intSpeed);
 
             int b = SystemParametersInfo(SPI_SETMOUSESPEED, 0, ptr, 0);
 
-            if (b == 0)
-            {
-                Console.WriteLine("Not able to set speed");
-            }
-            else if (b == 1)
-            {
-                Console.WriteLine("Successfully done");
-            }
 
         }
     }
